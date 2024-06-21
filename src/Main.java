@@ -3,7 +3,6 @@ import java.util.ArrayList;
 public class Main {
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
 
         EncontrarInversionesImplementacion invertir = new EncontrarInversionesImplementacion();
 
@@ -36,7 +35,6 @@ public class Main {
     }
 
     private static void imprimirResultado(ArrayList<ArrayList<InversionSeleccionada>> res) {
-
         for (int i=0; i < res.size();i++) {
             ArrayList<InversionSeleccionada> resIndividual = res.get(i);
             System.out.println("Inversion "+i);
@@ -47,6 +45,5 @@ public class Main {
             }
         }
     }
-
 
 }
