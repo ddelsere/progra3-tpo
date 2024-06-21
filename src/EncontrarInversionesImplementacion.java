@@ -1,4 +1,3 @@
-import com.sun.tools.jconsole.JConsoleContext;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,12 +6,10 @@ public class EncontrarInversionesImplementacion implements EncontrarInversiones 
 
     @Override
     public ArrayList<ArrayList<InversionSeleccionada>> obtenerInversiones(ArrayList<Inversion> arg0, double arg1, int arg2) { //arg0: inversiones, arg1: monto a invertir, arg2: incremental
-        // TODO Auto-generated method stub
         SolucionMaxima solucionMaxima = new SolucionMaxima();
         mejores_inversiones(arg0, arg2, arg1, 0, new Solucion(), solucionMaxima);
         ArrayList<ArrayList<InversionSeleccionada>> res = parseSolucionMaxima(solucionMaxima);
         return res;
-
     }
 
     private void mejores_inversiones(List<Inversion> inversiones, int incremental, double dineroRestante, int profundidad,
@@ -51,7 +48,6 @@ public class EncontrarInversionesImplementacion implements EncontrarInversiones 
                     mejores_inversiones(inversiones, incremental, dineroRestante, profundidad + 1, solucionActual, maxSolucion);
                 }
             }
-
         }
     }
 
