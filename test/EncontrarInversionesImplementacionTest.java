@@ -1,13 +1,15 @@
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.Test;
 
 import java.util.ArrayList;
-import org.junit.jupiter.api.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 
 public class EncontrarInversionesImplementacionTest {
 
     @Test
-    public void testObtenerInversionesMaxima() {
+    public void testConInversionMaximaUnica() {
         ArrayList<Inversion> inversiones = new ArrayList<>();
 
         Inversion inversionA = new Inversion();
@@ -28,31 +30,28 @@ public class EncontrarInversionesImplementacionTest {
 
         ArrayList<ArrayList<InversionSeleccionada>> resultado = encontrarInversiones.obtenerInversiones(inversiones, 3000.0, 500);
 
-        assertEquals(1, resultado.size(), "Debe haber una solución máxima");
+        assertEquals( "La solucion tiene una unica inversion realizada",1 , resultado.size());
 
         ArrayList<InversionSeleccionada> maxInversion = resultado.get(0);
+        InversionSeleccionada inversionSeleccionada= maxInversion.get(0);
 
+        assertEquals("La solucion dada es la correcta", "Inversion B", inversionSeleccionada.nombreInversionSeleccionada);
 
+        assertEquals("El monto invertido es el correcto",3000, inversionSeleccionada.montoAInvertir, 0);
 
-        double gananciaTotal = 0;
-        for (InversionSeleccionada inversion : maxInversion) {
-            gananciaTotal += inversion.rentabilidadObtenida;
-        }
+        assertEquals("La ganancia obtenida es la correcta", 300, inversionSeleccionada.rentabilidadObtenida, 0);
 
-        System.out.print(gananciaTotal);
-
-        assertTrue(gananciaTotal > 0, "La ganancia total debe ser mayor que cero");
-        assertEquals(1, maxInversion.size(), "Debe haber 2 inversiones seleccionadas");
     }
 
-    @Test
-    public void testObtenerDosInversionesMaxima() {
-        ArrayList<Inversion> inversiones = new ArrayList<>();
+    // TODO PRUEBA CON INVERSION MAXIMA DOBLE
 
+    @Test
+    public void testConTripleInversionMaxima() {
+        ArrayList<Inversion> inversiones = new ArrayList<>();
         Inversion inversionA = new Inversion();
         inversionA.nombreInversion = "Inversion A";
-        inversionA.montoMinimoParaInvertir = 1000.0;
-        inversionA.porcentajeRentabilidad = 5;
+        inversionA.montoMinimoParaInvertir = 2000.0;
+        inversionA.porcentajeRentabilidad = 10;
         inversionA.riesgo = 1;
         inversiones.add(inversionA);
 
@@ -63,33 +62,22 @@ public class EncontrarInversionesImplementacionTest {
         inversionB.riesgo = 2;
         inversiones.add(inversionB);
 
-        Inversion inversionC = new Inversion();
-        inversionB.nombreInversion = "Inversion C";
-        inversionB.montoMinimoParaInvertir = 2000.0;
-        inversionB.porcentajeRentabilidad = 10;
-        inversionB.riesgo = 2;
-        inversiones.add(inversionB);
-
         EncontrarInversiones encontrarInversiones = new EncontrarInversionesImplementacion();
 
         ArrayList<ArrayList<InversionSeleccionada>> resultado = encontrarInversiones.obtenerInversiones(inversiones, 4000.0, 500);
 
-        assertEquals(3, resultado.size(), "Debe haber dos soluciones máximas");
+        assertEquals( "La solucion posee tres caminos posibles",3 , resultado.size());
 
-        ArrayList<InversionSeleccionada> maxInversion = new ArrayList<>();
-
-        maxInversion.add(resultado.get(0).getFirst());
-        maxInversion.add(resultado.get(1).get(1));
-
-
-        double gananciaTotal = 0;
-        for (InversionSeleccionada inversion : maxInversion) {
-            gananciaTotal += inversion.rentabilidadObtenida;
+        int i = 0;
+        for (ArrayList<InversionSeleccionada> camino : resultado) {
+            double gananciaTotal = 0;
+            for (InversionSeleccionada inversion : camino) {
+                gananciaTotal += inversion.rentabilidadObtenida;
+            }
+            assertEquals("La ganancia obtenida del camino: " + i + " Es la correcta", 400, gananciaTotal, 0);
+            i++;
         }
+        // TODO VERIFICAR QUE LOS MONTOS E INVERSIONES SEAN CORRECTAS
 
-        System.out.print(gananciaTotal);
-
-        assertTrue(gananciaTotal > 0, "La ganancia total debe ser mayor que cero");
-        assertEquals(2, maxInversion.size(), "Debe haber 2 inversiones seleccionadas");
     }
 }
