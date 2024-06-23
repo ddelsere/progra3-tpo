@@ -14,6 +14,7 @@ public class EncontrarInversionesImplementacion implements EncontrarInversiones 
                 res = parseSolucionMaxima(solucionMaxima);
             }
         }
+
         return res;
     }
 
