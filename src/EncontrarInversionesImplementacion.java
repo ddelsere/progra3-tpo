@@ -6,9 +6,14 @@ public class EncontrarInversionesImplementacion implements EncontrarInversiones 
 
     @Override
     public ArrayList<ArrayList<InversionSeleccionada>> obtenerInversiones(ArrayList<Inversion> inversiones, double montoAInvertir, int incremental) {
-        SolucionMaxima solucionMaxima = new SolucionMaxima();
-        mejores_inversiones(inversiones, incremental, montoAInvertir, 0, new Solucion(), solucionMaxima);
-        ArrayList<ArrayList<InversionSeleccionada>> res = parseSolucionMaxima(solucionMaxima);
+        ArrayList<ArrayList<InversionSeleccionada>> res = new ArrayList<>();
+        if (inversiones.size() > 0) {
+            SolucionMaxima solucionMaxima = new SolucionMaxima();
+            mejores_inversiones(inversiones, incremental, montoAInvertir, 0, new Solucion(), solucionMaxima);
+            if (!solucionMaxima.estaVacia()) {
+                res = parseSolucionMaxima(solucionMaxima);
+            }
+        }
         return res;
     }
 
@@ -21,6 +26,10 @@ public class EncontrarInversionesImplementacion implements EncontrarInversiones 
             if (montoInvertido > 0) { // Caso que se realiza la inversion
                 int indiceIncremental = 0;
                 while (dineroRestante >= (montoInvertido + (incremental * indiceIncremental))) {
+                    // TODO: Fix temporal, si el incremental es 0, loopea infinito.
+                    if (indiceIncremental == 1 && incremental == 0) {
+                        break; // Tal vez puede hacer while(... && indiceincremental <= incremental
+                    }
                     montoInvertido += incremental * indiceIncremental;
                     dineroRestante -= montoInvertido;
                     double gananciaObtenida = montoInvertido * (porcentajeRentabilidad / 100);
@@ -51,13 +60,12 @@ public class EncontrarInversionesImplementacion implements EncontrarInversiones 
         }
     }
 
-
     private void buscarSolucionesEnHoja(Solucion solucionActual, SolucionMaxima maxSolucion) {
-        if (solucionActual.gananciaTotal > maxSolucion.gananciaTotal) {
+        if (solucionActual.gananciaTotal > maxSolucion.gananciaTotal && solucionActual.gananciaTotal != 0) {
             maxSolucion.gananciaTotal = solucionActual.gananciaTotal;
             maxSolucion.reiniciar();
             maxSolucion.insertar(solucionActual);
-        } else if (solucionActual.gananciaTotal == maxSolucion.gananciaTotal) {
+        } else if (solucionActual.gananciaTotal == maxSolucion.gananciaTotal && solucionActual.gananciaTotal != 0) {
             maxSolucion.insertar(solucionActual);
         }
     }

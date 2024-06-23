@@ -14,4 +14,8 @@ public class SolucionMaxima {
         this.soluciones = new ArrayList<Solucion>();
     }
 
+    public boolean estaVacia() {
+        return this.soluciones.size() == 0;
+    }
+
 }
