@@ -294,8 +294,6 @@ public class EncontrarInversionesImplementacionTest {
         assertEquals("El monto invertido es el correcto",1300, segundaInversion.montoAInvertir,0);
         assertEquals("La solución dada es la correcta", "Inversion C", tercerInversion.nombreInversionSeleccionada);
         assertEquals("El monto invertido es el correcto",200, tercerInversion.montoAInvertir,0);
-
-
     }
 }
 
