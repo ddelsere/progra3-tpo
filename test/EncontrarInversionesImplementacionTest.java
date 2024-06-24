@@ -248,6 +248,55 @@ public class EncontrarInversionesImplementacionTest {
 
         assertEquals("La ganancia obtenida es la correcta", 450, inversionSeleccionada.rentabilidadObtenida, 0);
     }
+
+
+    @Test
+    public void testConInversionesMultiplesYMultiplesInversiones() {
+        ArrayList<Inversion> inversiones = new ArrayList<>();
+
+        Inversion inversionA = new Inversion();
+        inversionA.nombreInversion = "Inversion A";
+        inversionA.montoMinimoParaInvertir = 1500;
+        inversionA.porcentajeRentabilidad = 5;
+        inversionA.riesgo = 1;
+        inversiones.add(inversionA);
+
+        Inversion inversionB = new Inversion();
+        inversionB.nombreInversion = "Inversion B";
+        inversionB.montoMinimoParaInvertir = 1300;
+        inversionB.porcentajeRentabilidad = 10;
+        inversionB.riesgo = 2;
+        inversiones.add(inversionB);
+
+        Inversion inversionC = new Inversion();
+        inversionC.nombreInversion = "Inversion C";
+        inversionC.montoMinimoParaInvertir = 200;
+        inversionC.porcentajeRentabilidad = 6;
+        inversionC.riesgo = 2;
+        inversiones.add(inversionC);
+
+
+        EncontrarInversiones encontrarInversiones = new EncontrarInversionesImplementacion();
+
+        ArrayList<ArrayList<InversionSeleccionada>> resultado = encontrarInversiones.obtenerInversiones(inversiones, 3000.0, 0);
+
+        // Asumiendo que la mejor inversión es la segunda (Inversion B)
+        assertEquals("La solución tiene tres inversiones realizadas", 3, resultado.getFirst().size());
+
+        ArrayList<InversionSeleccionada> mejorInversion = resultado.getFirst();
+        InversionSeleccionada primeraInversion = mejorInversion.getFirst();
+        InversionSeleccionada segundaInversion = mejorInversion.get(1);
+        InversionSeleccionada tercerInversion = mejorInversion.get(2);
+
+        assertEquals("La solución dada es la correcta", "Inversion A", primeraInversion.nombreInversionSeleccionada);
+        assertEquals("El monto invertido es el correcto",1500, primeraInversion.montoAInvertir,0);
+        assertEquals("La solución dada es la correcta", "Inversion B", segundaInversion.nombreInversionSeleccionada);
+        assertEquals("El monto invertido es el correcto",1300, segundaInversion.montoAInvertir,0);
+        assertEquals("La solución dada es la correcta", "Inversion C", tercerInversion.nombreInversionSeleccionada);
+        assertEquals("El monto invertido es el correcto",200, tercerInversion.montoAInvertir,0);
+
+
+    }
 }
 
 
