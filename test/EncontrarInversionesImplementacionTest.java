@@ -45,6 +45,31 @@ public class EncontrarInversionesImplementacionTest {
     }
 
     @Test
+    public void testConIncremental0YDinero0() {
+        ArrayList<Inversion> inversiones = new ArrayList<>();
+
+        Inversion inversionA = new Inversion();
+        inversionA.nombreInversion = "Inversion A";
+        inversionA.montoMinimoParaInvertir = 1000.0;
+        inversionA.porcentajeRentabilidad = 5;
+        inversionA.riesgo = 1;
+        inversiones.add(inversionA);
+
+        Inversion inversionB = new Inversion();
+        inversionB.nombreInversion = "Inversion B";
+        inversionB.montoMinimoParaInvertir = 2000.0;
+        inversionB.porcentajeRentabilidad = 10;
+        inversionB.riesgo = 2;
+        inversiones.add(inversionB);
+
+        EncontrarInversiones encontrarInversiones = new EncontrarInversionesImplementacion();
+
+        ArrayList<ArrayList<InversionSeleccionada>> resultado = encontrarInversiones.obtenerInversiones(inversiones, 0, 0);
+
+        assertEquals( "La solucion tiene cero inversiones",0 , resultado.size());
+    }
+
+    @Test
     public void testConIncremental0() {
         ArrayList<Inversion> inversiones = new ArrayList<>();
 
