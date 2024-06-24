@@ -224,28 +224,28 @@ public class EncontrarInversionesImplementacionTest {
 
         Inversion inversionA = new Inversion();
         inversionA.nombreInversion = "Inversion A";
-        inversionA.montoMinimoParaInvertir = 1000000.0;
+        inversionA.montoMinimoParaInvertir = 1000.0;
         inversionA.porcentajeRentabilidad = 5;
         inversionA.riesgo = 1;
         inversiones.add(inversionA);
 
         Inversion inversionB = new Inversion();
         inversionB.nombreInversion = "Inversion B";
-        inversionB.montoMinimoParaInvertir = 2000000.0;
+        inversionB.montoMinimoParaInvertir = 2000.0;
         inversionB.porcentajeRentabilidad = 10;
         inversionB.riesgo = 2;
         inversiones.add(inversionB);
 
         Inversion inversionC = new Inversion();
         inversionC.nombreInversion = "Inversion C";
-        inversionC.montoMinimoParaInvertir = 1500000.0;
+        inversionC.montoMinimoParaInvertir = 1500.0;
         inversionC.porcentajeRentabilidad = 6;
         inversionC.riesgo = 2;
         inversiones.add(inversionC);
 
         Inversion inversionD = new Inversion();
         inversionD.nombreInversion = "Inversion D";
-        inversionD.montoMinimoParaInvertir = 3000000.0;
+        inversionD.montoMinimoParaInvertir = 30.0;
         inversionD.porcentajeRentabilidad = 8;
         inversionD.riesgo = 3;
         inversiones.add(inversionD);
