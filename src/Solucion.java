@@ -12,6 +12,7 @@ public class Solucion {
     public void eliminarUltima() {
         this.inversionesRealizadas.removeLast();
     }
+
     public Solucion copiarSolucion() {
         ArrayList<InversionSeleccionada> nuevasInversiones = new ArrayList<InversionSeleccionada>();
         Solucion nuevaSolucion = new Solucion();

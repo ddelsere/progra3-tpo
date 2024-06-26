@@ -7,7 +7,7 @@ public class EncontrarInversionesImplementacion implements EncontrarInversiones 
     @Override
     public ArrayList<ArrayList<InversionSeleccionada>> obtenerInversiones(ArrayList<Inversion> inversiones, double montoAInvertir, int incremental) {
         ArrayList<ArrayList<InversionSeleccionada>> res = new ArrayList<>();
-        if (inversiones.size() > 0) {
+        if (!inversiones.isEmpty()) {
             SolucionMaxima solucionMaxima = new SolucionMaxima();
             mejores_inversiones(inversiones, incremental, montoAInvertir, 0, new Solucion(), solucionMaxima);
             if (!solucionMaxima.estaVacia()) {
@@ -26,23 +26,17 @@ public class EncontrarInversionesImplementacion implements EncontrarInversiones 
             double porcentajeRentabilidad = inversion.porcentajeRentabilidad;
             if (montoInvertido > 0) { // Caso que se realiza la inversion
                 int indiceIncremental = 0;
-                while (dineroRestante >= (montoInvertido + (incremental * indiceIncremental))) {
-                    // TODO: Fix temporal, si el incremental es 0, loopea infinito.
-                    if (indiceIncremental == 1 && incremental == 0) {
-                        break; // Tal vez puede hacer while(... && indiceincremental <= incremental
-                    }
+                while (dineroRestante >= (montoInvertido + (incremental * indiceIncremental)) && indiceIncremental <= incremental) {
                     montoInvertido += incremental * indiceIncremental;
                     dineroRestante -= montoInvertido;
                     double gananciaObtenida = montoInvertido * (porcentajeRentabilidad / 100);
-                    InversionSeleccionada inversionRealizada = inicializarInversionSeleccionada(montoInvertido,
-                            inversion.nombreInversion, gananciaObtenida, inversion.riesgo);
+                    InversionSeleccionada inversionRealizada = inicializarInversionSeleccionada(montoInvertido, inversion.nombreInversion, gananciaObtenida, inversion.riesgo);
                     solucionActual.insertar(inversionRealizada);
                     solucionActual.gananciaTotal += gananciaObtenida;
                     if (profundidad == inversiones.size() - 1) { // Es hoja
                         buscarSolucionesEnHoja(solucionActual, maxSolucion);
                     } else { // No es hoja
-                        mejores_inversiones(inversiones, incremental, dineroRestante, profundidad + 1, solucionActual,
-                                maxSolucion);
+                        mejores_inversiones(inversiones, incremental, dineroRestante, profundidad + 1, solucionActual, maxSolucion);
                     }
                     solucionActual.gananciaTotal -= gananciaObtenida;
                     solucionActual.eliminarUltima();

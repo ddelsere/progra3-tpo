@@ -41,7 +41,6 @@ public class Main {
             for (int j=0; j < resIndividual.size();j++) {
                 InversionSeleccionada invRes = resIndividual.get(j);
                 System.out.println("Option "+ j + " "+invRes.nombreInversionSeleccionada+ " "+ invRes.montoAInvertir+ " "+invRes.rentabilidadObtenida+" " + invRes.riesgoPromedio);
-
             }
         }
     }
