@@ -7,17 +7,19 @@ public class Solucion {
 
     public void insertar (InversionSeleccionada inversionSeleccionada) {
         this.inversionesRealizadas.addLast(inversionSeleccionada);
+        this.gananciaTotal += inversionSeleccionada.rentabilidadObtenida;
     }
 
     public void eliminarUltima() {
+        this.gananciaTotal -= this.inversionesRealizadas.getLast().rentabilidadObtenida;
         this.inversionesRealizadas.removeLast();
     }
 
     public Solucion copiarSolucion() {
         ArrayList<InversionSeleccionada> nuevasInversiones = new ArrayList<InversionSeleccionada>();
         Solucion nuevaSolucion = new Solucion();
-        for (int i = 0; i<this.inversionesRealizadas.size(); i++) {
-            nuevasInversiones.addLast(inversionesRealizadas.get(i));
+        for (int i = 0; i< this.inversionesRealizadas.size(); i++) {
+            nuevasInversiones.addLast(this.inversionesRealizadas.get(i));
         }
         nuevaSolucion.inversionesRealizadas = nuevasInversiones;
         nuevaSolucion.gananciaTotal = this.gananciaTotal;

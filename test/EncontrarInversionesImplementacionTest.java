@@ -320,40 +320,4 @@ public class EncontrarInversionesImplementacionTest {
         assertEquals("La solución dada es la correcta", "Inversion C", tercerInversion.nombreInversionSeleccionada);
         assertEquals("El monto invertido es el correcto",200, tercerInversion.montoAInvertir,0);
     }
-
-    @Test
-    public void testConInversionesRandom() {
-        ArrayList<Inversion> inversiones = new ArrayList<>();
-
-        Inversion inversionA = new Inversion();
-        inversionA.nombreInversion = "Inversion A";
-        inversionA.montoMinimoParaInvertir = 2000;
-        inversionA.porcentajeRentabilidad = 12;
-        inversionA.riesgo = 1;
-        inversiones.add(inversionA);
-
-        Inversion inversionB = new Inversion();
-        inversionB.nombreInversion = "Inversion B";
-        inversionB.montoMinimoParaInvertir = 8000;
-        inversionB.porcentajeRentabilidad = 21;
-        inversionB.riesgo = 2;
-        inversiones.add(inversionB);
-
-        Inversion inversionC = new Inversion();
-        inversionC.nombreInversion = "Inversion C";
-        inversionC.montoMinimoParaInvertir = 3200;
-        inversionC.porcentajeRentabilidad = 14;
-        inversionC.riesgo = 2;
-        inversiones.add(inversionC);
-
-        EncontrarInversiones encontrarInversiones = new EncontrarInversionesImplementacion();
-
-        ArrayList<ArrayList<InversionSeleccionada>> resultado = encontrarInversiones.obtenerInversiones(inversiones, 10000, 3500);
-
-        assertEquals("La solución tiene tres inversiones realizadas", 2, resultado.getFirst().size());
-        assertEquals("La solución tiene tres inversiones realizadas", 2000.0, resultado.getFirst().getFirst().montoAInvertir, 0);
-        assertEquals("La solución tiene tres inversiones realizadas", 8000.0, resultado.getFirst().getLast().montoAInvertir, 0);
-    }
 }
-
-

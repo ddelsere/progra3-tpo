@@ -5,7 +5,7 @@ public class Main {
     public static void main(String[] args) {
 
         EncontrarInversionesImplementacion invertir = new EncontrarInversionesImplementacion();
-
+        /*
         ArrayList<Inversion> inversiones = new ArrayList<Inversion>();
         Inversion inversion = new Inversion();
         inversion.nombreInversion = "A";
@@ -30,6 +30,34 @@ public class Main {
 
         double montoAInvertir = 10000000;
         int valorIncremental = 20000;
+        ArrayList<ArrayList<InversionSeleccionada>> res= invertir.obtenerInversiones(inversiones, montoAInvertir, valorIncremental);
+        imprimirResultado(res);
+         */
+
+        ArrayList<Inversion> inversiones = new ArrayList<Inversion>();
+        Inversion inversion = new Inversion();
+        inversion.nombreInversion = "A";
+        inversion.montoMinimoParaInvertir= 80;
+        inversion.porcentajeRentabilidad = 45;
+        inversion.riesgo = 8;
+        inversiones.add(inversion);
+
+        inversion = new Inversion();
+        inversion.nombreInversion = "B";
+        inversion.montoMinimoParaInvertir= 80;
+        inversion.porcentajeRentabilidad = 52;
+        inversion.riesgo = 12;
+        inversiones.add(inversion);
+
+        inversion = new Inversion();
+        inversion.nombreInversion = "C";
+        inversion.montoMinimoParaInvertir= 80;
+        inversion.porcentajeRentabilidad = 45;
+        inversion.riesgo = 11;
+        inversiones.add(inversion);
+
+        double montoAInvertir = 1000;
+        int valorIncremental = 28;
         ArrayList<ArrayList<InversionSeleccionada>> res= invertir.obtenerInversiones(inversiones, montoAInvertir, valorIncremental);
         imprimirResultado(res);
     }

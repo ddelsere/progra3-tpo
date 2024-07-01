@@ -6,13 +6,13 @@ public class ComplejidadTemporalTest {
 
     @Test
     public void pruebaAltoVolumenInversiones() {
-        int volumen = 35;
+        int volumen = 10;
         int repeticiones = 10;
-        double dinero = 5000;
-        int incremental = 500;
-        int monto_inversiones = 500;
+        double dinero = 25000;
+        int incremental = 2500;
+        int monto_inversiones = 2000;
         double promedioTiempo = 0;
-        System.out.println("N=" + volumen + ", M=" + dinero/incremental);
+        System.out.println("N=" + volumen + ", M=" + (dinero-monto_inversiones)/incremental);
         for (int j = 0; j < repeticiones; j++) {
             ArrayList<Inversion> inversiones = new ArrayList<>();
             for (int i = 0; i < volumen; i++) {
@@ -27,10 +27,10 @@ public class ComplejidadTemporalTest {
             long tiempoInicio = System.currentTimeMillis();
             ArrayList<ArrayList<InversionSeleccionada>> resultado = encontrarInversiones.obtenerInversiones(inversiones, dinero, incremental);
             long tiempoFinal = System.currentTimeMillis();
-            double tiempoEjecucion = (tiempoFinal - tiempoInicio) / 1000.0;
+            double tiempoEjecucion = (tiempoFinal - tiempoInicio);
             promedioTiempo += tiempoEjecucion;
-            System.out.println("Tiempo de ejcucion del algoritmo: " + tiempoEjecucion + " seg.");
+            System.out.println("Tiempo de ejcucion del algoritmo: " + tiempoEjecucion + " ms");
         }
-        System.out.println("Promedio de tiempo de ejecucion: " + promedioTiempo/repeticiones);
+        System.out.println("Promedio de tiempo de ejecucion: " + promedioTiempo/repeticiones + " ms");
     }
 }

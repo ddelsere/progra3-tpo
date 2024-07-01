@@ -8,14 +8,16 @@ public class SolucionMaxima {
     public void insertar(Solucion solucion) {
         Solucion copiaSolucion = solucion.copiarSolucion();
         this.soluciones.addLast(copiaSolucion);
+        this.gananciaTotal = solucion.gananciaTotal;
     }
 
     public void reiniciar() {
         this.soluciones = new ArrayList<Solucion>();
+        this.gananciaTotal = 0;
     }
 
     public boolean estaVacia() {
-        return this.soluciones.size() == 0;
+        return this.soluciones.isEmpty();
     }
 
 }
