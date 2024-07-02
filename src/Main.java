@@ -5,7 +5,7 @@ public class Main {
     public static void main(String[] args) {
 
         EncontrarInversionesImplementacion invertir = new EncontrarInversionesImplementacion();
-
+        /*
         ArrayList<Inversion> inversiones = new ArrayList<Inversion>();
         Inversion inversion = new Inversion();
         inversion.nombreInversion = "A";
@@ -32,6 +32,34 @@ public class Main {
         int valorIncremental = 20000;
         ArrayList<ArrayList<InversionSeleccionada>> res= invertir.obtenerInversiones(inversiones, montoAInvertir, valorIncremental);
         imprimirResultado(res);
+         */
+
+        ArrayList<Inversion> inversiones = new ArrayList<Inversion>();
+        Inversion inversion = new Inversion();
+        inversion.nombreInversion = "A";
+        inversion.montoMinimoParaInvertir= 80;
+        inversion.porcentajeRentabilidad = 45;
+        inversion.riesgo = 8;
+        inversiones.add(inversion);
+
+        inversion = new Inversion();
+        inversion.nombreInversion = "B";
+        inversion.montoMinimoParaInvertir= 80;
+        inversion.porcentajeRentabilidad = 52;
+        inversion.riesgo = 12;
+        inversiones.add(inversion);
+
+        inversion = new Inversion();
+        inversion.nombreInversion = "C";
+        inversion.montoMinimoParaInvertir= 80;
+        inversion.porcentajeRentabilidad = 45;
+        inversion.riesgo = 11;
+        inversiones.add(inversion);
+
+        double montoAInvertir = 1000;
+        int valorIncremental = 28;
+        ArrayList<ArrayList<InversionSeleccionada>> res= invertir.obtenerInversiones(inversiones, montoAInvertir, valorIncremental);
+        imprimirResultado(res);
     }
 
     private static void imprimirResultado(ArrayList<ArrayList<InversionSeleccionada>> res) {
@@ -41,7 +69,6 @@ public class Main {
             for (int j=0; j < resIndividual.size();j++) {
                 InversionSeleccionada invRes = resIndividual.get(j);
                 System.out.println("Option "+ j + " "+invRes.nombreInversionSeleccionada+ " "+ invRes.montoAInvertir+ " "+invRes.rentabilidadObtenida+" " + invRes.riesgoPromedio);
-
             }
         }
     }
